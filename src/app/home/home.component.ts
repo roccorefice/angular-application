@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-home',
@@ -13,17 +14,27 @@ export class HomeComponent implements OnInit {
 	show: boolean = false; //variabile booleana che viene utilizzata nell' ngIf per mostrare o nascondere un item
 	color: string = 'black';
 	size: string = 'none';
+
 	@Input() user: string = ''; //attributi della classe
 
-	//constructor viene chiamato ogni qualvolta il componente viene generato
-	//all'interno di un metodo (constructor()) è possibile utilizzare la sintassi di JavaScript
-	constructor() {
+	form : FormGroup //form group
+
+	// constructor viene chiamato ogni qualvolta il componente viene generato
+	// all'interno di un metodo (constructor()) è possibile utilizzare la sintassi di JavaScript
+	// con fb instanziamo in maniera automatica un attributo che richiama il Service FormBuilder
+	constructor( public fb: FormBuilder ) {
 		//Instanzio le variabili precedentemente dichiarate, si fa con l'utilizzo del this
 		this.today = new Date();
 
 		let money1 = 10;
 		let money2 = 20;
 		this.money = this.sum(money1, money2);
+		this.form = fb.group({
+			'username' : ['', Validators.required],
+			'email' : ['', Validators.required],
+			'date' : [''],
+
+		});
 	}
 
 	//In questo contesto le funzioni hanno effetto solo per le classi, una funzione creata qui ha effetto solo nella relativa classe
@@ -71,4 +82,28 @@ export class HomeComponent implements OnInit {
 			this.size = "none";
 		}
 	}
+
+	send(): void{
+		// validazione form
+		if(!this.form.valid){
+			alert('compilare tutti i campi obbligaotri');
+			return;
+		}
+		console.log(
+			this.form.controls['username'].value, //questa sintassi per andarmi a prendere il singolo valore dell'input (user)
+			this.form.controls['email'].value,
+			this.form.controls['date'].value,
+		);
+		
+	}
+	
+	checkUser() { 
+		let user = this.form.controls['username'].value;
+		if (!(user.length >= 8)) {
+			this.form.controls['username'].setErrors({incorect: true}); //manualmente imposto il campo in errore se < 8 caratteri
+		} else {
+			this.form.controls['username'].setErrors(null); 
+		}
+	}
+	// ->risultato: il form risulterà non valido anche se il campo user sarà compilato ma con meno di 8 caratteri
 }

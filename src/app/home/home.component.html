@@ -47,3 +47,12 @@
     </ul>
 </div>
 
+<div>
+    <form  (ngSubmit)="send()" [formGroup]="form">
+        <input type="text" class="form-control" placeholder="username" formControlName="username" (input)="checkUser()">
+        <input type="email" class="form-control" placeholder="email" formControlName="email">
+        <input type="date" class="form-control" placeholder="data nascita" formControlName="date">
+        <input type="submit" value="invia">
+    </form>
+</div>
+

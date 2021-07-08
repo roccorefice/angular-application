@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import localeIT from '@angular/common/locales/it'
 import { registerLocaleData } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localeIT, 'it');
 
@@ -17,6 +18,8 @@ registerLocaleData(localeIT, 'it');
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [{provide: LOCALE_ID, useValue: 'it'}, {provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR'}],
