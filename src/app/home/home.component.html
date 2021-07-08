@@ -3,17 +3,47 @@
 <h3>Oggi è {{today | date: 'dd EEEE MMMM yy HH:mm'}}</h3>
 <h3>Costo {{money | currency}}</h3>
 
-<p *ngIf="show">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi suscipit nulla quisquam eveniet doloribus harum et veniam quia magni? Enim sequi reprehenderit nemo deserunt? Quae quo reiciendis aperiam quos voluptas.</p>
+<p *ngIf="show" [style.color]="color" [ngClass]="{'big' : size == 'big', 'small' : size == 'small'}">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi suscipit nulla quisquam eveniet doloribus harum et veniam quia magni? Enim sequi reprehenderit nemo deserunt? Quae quo reiciendis aperiam quos voluptas.</p>
 
-<!-- richiamo evento change, al change invoco funzione hello nella quale passiamo un ID che ha effetto solo in Typescript -->
-<select (change)=hello(selectField) #selectField>
-    <option value="1">saluta con alert</option>
-    <option value="2">saluta in console</option>
-</select>
+<div>
+    <!-- richiamo evento change, al change invoco funzione hello nella quale passiamo un ID (selectField) che ha effetto solo in Typescript -->
+    <h5>Scegli come farti salutare :)</h5>
+    <select (change)=hello(selectField) #selectField>
+        <option value="1">saluta con alert</option>
+        <option value="2">saluta in console</option>
+    </select>
+</div>
 
-<ul>
-    <li *ngFor="let i of lista">{{i}}</li>
-</ul>
+<div>
+    <!-- richiamo evento change, al change invoco funzione changeColor nella quale passiamo un ID (selectFieldColor) che ha effetto solo in Typescript -->
+    <h5>Cambia il colore del testo</h5>
+    <select (change)=changeColor(selectFieldColor) #selectFieldColor>
+        <option value="1">green</option>
+        <option value="2">yellow</option>
+        <option value="3">red</option>
+    </select>
+</div>
 
-<!-- invoco la funzione showhidden per mostrare o nascondere il tag <p> -->
-<button id="button" (click)="showhidden()">mostra/nascondi</button>
+<div>
+    <!-- richiamo evento change, al change invoco funzione changeColor nella quale passiamo un ID (selectFieldSize) che ha effetto solo in Typescript -->
+    <h5>Cambia la dimensione del testo</h5>
+    <select (change)=changeSize(selectFieldSize) #selectFieldSize>
+        <option value="1">big</option>
+        <option value="2">small</option>
+        <option value="3">reset</option>
+    </select>
+</div>
+
+<div>
+    <h5>Mostra o Nascondi il testo</h5>
+    <!-- invoco la funzione showhidden per mostrare o nascondere il tag <p> -->
+    <button id="button" (click)="showhidden()">mostra/nascondi</button>
+</div>
+
+<div>
+    <h5>ngFor per ciclare in array</h5>
+    <ul>
+        <li *ngFor="let i of lista">{{i}}</li>
+    </ul>
+</div>
+

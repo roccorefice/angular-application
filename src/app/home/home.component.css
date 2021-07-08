@@ -1,0 +1,8 @@
+.big{
+    font-size: 200%;
+    text-transform: uppercase;
+}
+.small{
+    font-size: 50%;
+    text-transform: lowercase;
+}

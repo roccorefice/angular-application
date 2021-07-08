@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
 	money!: number; //dichiaro una variabile money di tipo number
 	lista: string[] = ['test1', 'test2', 'test3', 'test4', 'test5']; //variabile array per sperimentare utilizzo ngFor
 	show: boolean = false; //variabile booleana che viene utilizzata nell' ngIf per mostrare o nascondere un item
+	color: string = 'black';
+	size: string = 'none';
 	@Input() user: string = ''; //attributi della classe
 
 	//constructor viene chiamato ogni qualvolta il componente viene generato
@@ -47,6 +49,26 @@ export class HomeComponent implements OnInit {
 			alert("hello")
 		} else {
 			console.log("hello");
+		}
+	}
+
+	changeColor(field: HTMLSelectElement) {
+		if (field.value == "1") {
+			this.color = "green";
+		} else if (field.value == "2"){
+			this.color = "yellow";
+		} else {
+			this.color = "red";
+		}
+	}
+
+	changeSize(field: HTMLSelectElement) {
+		if (field.value == "1") {
+			this.size = "big";
+		} else if (field.value == "2"){
+			this.size = "small";
+		} else{
+			this.size = "none";
 		}
 	}
 }
