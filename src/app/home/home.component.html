@@ -1,0 +1,19 @@
+<h2>home-component</h2>
+<h3>ciao {{user}}</h3>
+<h3>Oggi è {{today | date: 'dd EEEE MMMM yy HH:mm'}}</h3>
+<h3>Costo {{money | currency}}</h3>
+
+<p *ngIf="show">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi suscipit nulla quisquam eveniet doloribus harum et veniam quia magni? Enim sequi reprehenderit nemo deserunt? Quae quo reiciendis aperiam quos voluptas.</p>
+
+<!-- richiamo evento change, al change invoco funzione hello nella quale passiamo un ID che ha effetto solo in Typescript -->
+<select (change)=hello(selectField) #selectField>
+    <option value="1">saluta con alert</option>
+    <option value="2">saluta in console</option>
+</select>
+
+<ul>
+    <li *ngFor="let i of lista">{{i}}</li>
+</ul>
+
+<!-- invoco la funzione showhidden per mostrare o nascondere il tag <p> -->
+<button id="button" (click)="showhidden()">mostra/nascondi</button>
