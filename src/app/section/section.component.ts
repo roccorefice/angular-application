@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-section',
@@ -8,6 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./section.component.css']
 })
 export class SectionComponent implements OnInit {
+
+    users : User[] = new Array();
 
   constructor(public http: HttpClient ) { }
 
@@ -30,11 +33,40 @@ export class SectionComponent implements OnInit {
 
   // METODO 2
   ngOnInit(): void {
-    this.loadApi();
+        this.createApi();
+        this.loadSingleApi();
+        this.editSingleApi();
+        this.loadApi();
+        this.deleteSingleApi();
   }
 
   loadApi(): void{
-    this.http.get('https://dog.ceo/api/breeds/list/all').subscribe(res => {
+    this.http.get('https://crudcrud.com/api/180a71662a0c43a8979b4c7df3ccc894/users').subscribe(res => {
+        console.log(res);
+    })
+  }
+
+  loadSingleApi(): void{
+    this.http.get<User[]>('https://crudcrud.com/api/180a71662a0c43a8979b4c7df3ccc894/users').subscribe(res => {
+        this.users = res;
+        console.log(this.users);
+    })
+  }
+
+  editSingleApi(): void{
+    this.http.put('https://crudcrud.com/api/180a71662a0c43a8979b4c7df3ccc894/users/60e81973209ad703e8101a8a', { "name":"Maria De Filippi", "age":60, "colour":"blue" }).subscribe(res => {
+        console.log(res);
+    })
+  }
+
+  deleteSingleApi(): void{
+    this.http.delete('https://crudcrud.com/api/180a71662a0c43a8979b4c7df3ccc894/users/60e81973209ad703e8101a8a').subscribe(res => {
+        console.log(res);
+    })
+  }
+
+  createApi(): void{
+    this.http.post('https://crudcrud.com/api/180a71662a0c43a8979b4c7df3ccc894/users', { "name":"Pippo Baudo", "age":80, "colour":"blue" }).subscribe(res => {
         console.log(res);
     })
   }
