@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { appService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular-app';
-  username  : string = 'Nothing00';
+  user  : string = 'Nothing00';
+
+  constructor(public tService: appService) {
+    this.tService.userChanged$.subscribe(user => {
+      this.user = user;
+    });
+    this.tService.changeUser(this.user);
+  }
 }

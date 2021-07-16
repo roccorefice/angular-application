@@ -9,6 +9,8 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SectionComponent } from './section/section.component';
+import { BlogComponent } from './blog/blog.component';
+import { MainComponent } from './main/main.component';
 
 registerLocaleData(localeIT, 'it');
 
@@ -16,7 +18,9 @@ registerLocaleData(localeIT, 'it');
   declarations: [
     AppComponent,
     HomeComponent,
-    SectionComponent
+    SectionComponent,
+    BlogComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
